@@ -27,4 +27,3 @@ stack = Stack(N)
 for _ in range(N):
     stack.push(int(input()))
 print(f'{1+stack.showingCnt()}')
-
