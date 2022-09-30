@@ -4,7 +4,6 @@ input = sys.stdin.readline
 
 N, M = map(int, input().split())
 trees = list(map(int, input().split()))
-# trees = sorted(trees)
 
 def find_H(trees, M):
     low, high = 1, max(trees) # O(n)
@@ -31,4 +30,3 @@ def find_H(trees, M):
 print(find_H(trees, M))
 
 
-    
