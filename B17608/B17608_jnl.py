@@ -13,20 +13,17 @@ class Stack:
         self.stk[self.ptr] = value
         self.ptr += 1
 
-    def pop(self) -> int:
-        self.ptr -= 1
-        return self.stk[self.ptr]
-
-    def taller(self, value:int) -> int:
+    def showingCnt(self) -> int:
         cnt = 0
-        for i in range(self.ptr-1,-1, -1):
-            if self.stk[i] > value:
+        maxHeight = self.stk[self.ptr-1]
+        for i in range(self.ptr-1, -1, -1):
+            if self.stk[i] > maxHeight:
                 cnt += 1
+                maxHeight = self.stk[i]
         return cnt
 
 N = int(input())
 stack = Stack(N)
 for _ in range(N):
     stack.push(int(input()))
-last = stack.pop()
-print(f'{1+stack.taller(last)}')
+print(f'{1+stack.showingCnt()}')
