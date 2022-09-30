@@ -15,6 +15,7 @@ class Stack:
     def push(self, value):
         self.stk[self.ptr] = value
         self.ptr += 1
+        
     def sum(self):
         sum = 0
         for idx in range(self.ptr):
