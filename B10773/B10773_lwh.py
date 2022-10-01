@@ -30,4 +30,6 @@ for integer in integers:
         account.pop()
     else:
         account.push(integer)
+
 print(account.sum())
+
