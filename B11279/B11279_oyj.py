@@ -10,7 +10,6 @@ def do_push(num):
         # 방금 append한 값의 인덱스를 i로 두고, 부모와 비교
         i = len(arr)-1 
         parent_i = i//2 # 부모 인덱스 
-        
         # 위로 올라가면서 힙을 만든다
         # 맥스 힙은 항상 부모가 커야 하므로, 부모가 방금 자식보다 작은 한 계속해서 올라간다. 
         while arr[parent_i] < arr[i]:
