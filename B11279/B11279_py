@@ -1,0 +1,91 @@
+import sys
+sys.stdin = open('B11279/input_lwh.txt', 'r')
+input = sys.stdin.readline
+
+class FixedPriorityQueue:
+
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.no = 0
+        self.root = 1
+        self.heapq = [0] * (self.capacity + 1)
+        # self.heapq[0] = sys.maxsize
+        self.heapq[0] = 2**31
+
+    def parent(self, pos):
+        return pos // 2
+
+    def left_child(self, pos):
+        return pos * 2
+
+    def right_child(self, pos):
+        return pos * 2 + 1
+    
+    def is_leaf(self, pos):
+        level = 0
+        k = self.no
+        while True:
+            if k == 1:
+                return pos >= 2**level and pos <= self.no
+            k //= 2
+            level += 1
+
+    def is_empty(self):
+        return self.no <= 0
+
+    def swap(self, fpos, spos):
+        self.heapq[fpos], self.heapq[spos] = self.heapq[spos], self.heapq[fpos]
+    
+    def max_heapify(self, pos):
+        if not self.is_leaf(pos):
+            if (self.heapq[pos] < self.heapq[self.left_child(pos)] or
+                self.heapq[pos] < self.heapq[self.right_child(pos)]):
+                if self.heapq[self.left_child(pos)] > self.heapq[self.right_child(pos)]:
+                    self.swap(pos, self.left_child(pos))
+                    self.max_heapify(self.left_child(pos))
+                else:
+                    self.swap(pos, self.right_child(pos))
+                    self.max_heapify(self.right_child(pos))
+    
+    def push(self, value):
+        self.no += 1
+        self.heapq[self.no] = value
+
+        current = self.no
+
+        while self.heapq[current] > self.heapq[self.parent(current)]:
+            self.swap(current, self.parent(current))
+            current = self.parent(current)
+    
+    def pop(self):
+        if self.is_empty():
+            return 0
+        else:
+            popped = self.heapq[self.root]
+            self.heapq[self.root] = self.heapq[self.no]
+            self.heapq[self.no] = 0
+            self.no -= 1
+            if self.no >= 1:
+                self.max_heapify(self.root)
+            return popped        
+
+N = int(input())
+j = 0
+l = N
+while True:
+    if l ==1:
+        l = 2**(j+1) - 1
+        break
+    l //= 2
+    j += 1
+        
+fpq = FixedPriorityQueue(l)
+
+for _ in range(N):
+    x = int(input())
+    if x == 0 :
+        print(fpq.pop())
+    else:
+        fpq.push(x)
+
+
