@@ -1,0 +1,30 @@
+import sys
+import heapq
+sys.stdin = open('B1655/B1655_lwh.txt', 'r')
+print = sys.stdout.write
+input = sys.stdin.readline
+
+
+N = int(input())
+left = [] # root -> max-heap
+right = [] # root -> min-heap
+
+for _ in range(N):
+    num = int(input())
+    if len(left) == len(right):
+        heapq.heappush(left, (-num, num))
+    else:
+        heapq.heappush(right, (num, num))
+    
+    if len(right):
+        temp1 = heapq.heappop(left)[1] 
+        temp2 = heapq.heappop(right)[1]
+        if temp1 > temp2:
+            heapq.heappush(left, (-temp2, temp2))
+            heapq.heappush(right, (temp1, temp1))
+        else:
+            heapq.heappush(left, (-temp1, temp1))
+            heapq.heappush(right, (temp2, temp2))
+
+    print(f'{left[0][1]}\n')
+    
