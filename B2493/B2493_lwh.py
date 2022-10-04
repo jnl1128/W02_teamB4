@@ -40,7 +40,7 @@ class FixedStack:
 
 def radiate():
     highest = 0
-    for idx, tower in enumerate(list(map(int, input().split()))):
+    for idx, tower in enumerate(map(int, input().split())):
 
         if tower > highest:
             highest = tower
