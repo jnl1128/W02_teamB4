@@ -1,7 +1,7 @@
 import sys
 import math
 from collections import deque
-sys.stdin = open('B3190/B3190_lwh.txt', 'r')
+sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
 
 def crawl(board, snake, X, dx, dy):
