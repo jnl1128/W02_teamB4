@@ -44,7 +44,7 @@ def radiate():
 
         if tower > highest:
             highest = tower
-            stack.clear()
+            stack.clear()  # fixed 에서는 사실 이득 없음
             stack.push((idx+1, tower))
             print(0)
             continue
